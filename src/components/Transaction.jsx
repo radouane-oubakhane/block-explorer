@@ -4,39 +4,40 @@ import {
     Box,
     HStack,
     Icon,
-    SimpleGrid, Text
+    SimpleGrid, Text, useColorMode
 } from "@chakra-ui/react";
 import {CgNotes} from "react-icons/all.js";
 
 
 function Transaction({transaction}) {
+    const { colorMode } = useColorMode()
     return (
         <AccordionItem>
-            <h2>
+
                 <AccordionButton>
-                    <Box as="span" flex='1' textAlign='left'>
+                    <Box as="span" textAlign='left'>
                         <HStack>
                             <Icon
                                 boxSize={6}
                                 margin={5}
                                 as={CgNotes}
                             />
-                            <SimpleGrid columns={2} spacing={5} templateColumns={"1fr 1fr"}>
-                                    <Box as="span" color="aqua">{transaction.hash}</Box>
+                            <SimpleGrid columns={1} spacing={2}>
+                                    <Box as="span" color={colorMode === 'dark' ? "aqua" : "blue.400"} fontSize={16}>{transaction.hash.slice(0,30)}...</Box>
                                     <Box></Box>
                                 <HStack>
-                                    <Text textTransform='uppercase'>
+                                    <Text textTransform='uppercase' fontFamily={"monospace"}>
                                         From
                                     </Text>
-                                    <Text color="aqua">
+                                    <Text color={colorMode === 'dark' ? "aqua" : "blue.400"} fontSize='sm'>
                                         {transaction.from}
                                     </Text>
                                 </HStack>
                                 <HStack>
-                                    <Text textTransform='uppercase'>
+                                    <Text textTransform='uppercase' fontFamily={"monospace"}>
                                         To
                                     </Text>
-                                    <Text fontSize='sm' color="aqua">
+                                    <Text fontSize='sm' color={colorMode === 'dark' ? "aqua" : "blue.400"}>
                                         {transaction.to}
                                     </Text>
                                 </HStack>
@@ -44,7 +45,7 @@ function Transaction({transaction}) {
                         </HStack>
                     </Box>
                 </AccordionButton>
-            </h2>
+
         </AccordionItem>
     )
 }

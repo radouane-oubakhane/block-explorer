@@ -16,7 +16,7 @@ const useBlocks = () => {
             setIsBlocksListLoading(true)
             try {
                 const blocks = []
-                for (let i = blockNumber; i > blockNumber - 10; i--) {
+                for (let i = blockNumber; i > blockNumber - 11; i--) {
                     const block = await provider.core.getBlockWithTransactions(i)
                     blocks.push(block)
                 }

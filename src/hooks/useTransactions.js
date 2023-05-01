@@ -3,9 +3,6 @@ import provider from "../services/ethereum-provider.js";
 
 
 const useTransactions = () => {
-    const [blockNumber, setBlockNumber] = useState(0)
-    const [blockNumberError, setBlockNumberError] = useState('')
-    const [isBlockNumberLoading, setIsBlockNumberLoading] = useState(false);
 
     const [transactionsList, setTransactionsList] = useState([])
     const [transactionsListError, setTransactionsListError] = useState('')
@@ -13,7 +10,7 @@ const useTransactions = () => {
 
     useEffect (() => {
 
-        async function getLastTenBlocks() {
+        async function getLastTenBlocks(blockNumber) {
             setIsTransactionsListLoading(true)
             try {
                 const block = await provider.core.getBlockWithTransactions(blockNumber)
@@ -28,13 +25,12 @@ const useTransactions = () => {
 
         provider.core.getBlockNumber()
             .then(res => {
-                    setBlockNumber(res)
-                    getLastTenBlocks()
+                    getLastTenBlocks(res)
                 }
             )
             .catch(err => {
-                setBlockNumberError(err)
-                setIsBlockNumberLoading(false)
+                setTransactionsListError(err)
+                setIsTransactionsListLoading(false)
             })
 
 
