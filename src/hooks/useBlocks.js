@@ -2,17 +2,13 @@ import {useEffect, useState} from "react"
 import provider from '../services/ethereum-provider.js'
 
 const useBlocks = () => {
-    const [blockNumber, setBlockNumber] = useState(0)
-    const [blockNumberError, setBlockNumberError] = useState('')
-    const [isBlockNumberLoading, setIsBlockNumberLoading] = useState(false);
-
     const [blocksList, setBlocksList] = useState([])
     const [blocksListError, setBlocksListError] = useState('')
     const [isBlocksListLoading, setIsBlocksListLoading] = useState(false);
 
     useEffect (() => {
 
-        async function getLastTenBlocks() {
+        async function getLastTenBlocks(blockNumber) {
             setIsBlocksListLoading(true)
             try {
                 const blocks = []
@@ -30,13 +26,13 @@ const useBlocks = () => {
 
         provider.core.getBlockNumber()
             .then(res => {
-                    setBlockNumber(res)
-                    getLastTenBlocks()
+
+                    getLastTenBlocks(res)
                 }
             )
             .catch(err => {
-                setBlockNumberError(err)
-                setIsBlockNumberLoading(false)
+                setBlocksListError(err)
+                setIsBlocksListLoading(false)
             })
 
 

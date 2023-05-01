@@ -1,4 +1,4 @@
-import {Accordion, Box, Heading} from "@chakra-ui/react";
+import {Accordion, Alert, AlertIcon, Box, Heading} from "@chakra-ui/react";
 import useBlocks from "../hooks/useBlocks.js";
 import BlockInfo from "./BlockInfo.jsx";
 import BlockInfoSkeleton from "./BlockInfoSkeleton.jsx";
@@ -6,6 +6,13 @@ import BlockInfoSkeleton from "./BlockInfoSkeleton.jsx";
 
 function BlocksList() {
     const {blocksList, isBlocksListLoading, blocksListError} = useBlocks()
+    if (blocksListError)
+        return (
+            <Alert status='error' paddingBottom="100%">
+                <AlertIcon />
+                There was an error processing your request
+            </Alert>)
+
     const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     return (
         <Box
@@ -16,13 +23,13 @@ function BlocksList() {
             }}
             paddingY={6}
         >
-            <Heading padding={3}>Latest Blocks</Heading>
+            <Heading paddingY={3}>Latest Blocks</Heading>
             <Accordion
                 allowToggle
             >
-                {isBlocksListLoading && skeletons.map(skeletons => <BlockInfoSkeleton />)}
+                {isBlocksListLoading && skeletons.map((skeleton, index) => <BlockInfoSkeleton key={index} />)}
                 {blocksList.map((block, index) =>
-                    block.number != '0' ? <BlockInfo key={index} block={block} /> : null
+                    block.number !== 0 ? <BlockInfo key={index} block={block} /> : null
                 )}
             </Accordion>
         </Box>

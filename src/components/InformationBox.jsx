@@ -33,10 +33,22 @@ function InformationBox() {
             }}
                 justifyContent="space-between"
             >
-                <InfoCard title="LAST FINALIZED BLOCK" value={blockNumber} unit={''} description={"Latest confirmed Ethereum block"} />
-                <InfoCard title="GAS PRICE" value={gasPrice} unit={'Gwei'} description={"Ethereum transaction fee"} />
-                <InfoCard title="ETHER PRICE" value={etherPrice.ethbtc} unit={'BTC'} description={"Ethereum/Bitcoin trading pair"} />
-                <InfoCard title="ETHER PRICE" value={etherPrice.ethusd} unit={'$'} description={"Ethereum/USD trading pair"} />
+                {!blockNumberError ?
+                <InfoCard title="LAST FINALIZED BLOCK" value={blockNumber} unit={''} description={"Latest confirmed Ethereum block"} /> :
+                    <InfoCard title="LAST FINALIZED BLOCK" value={"-"} unit={''} description={"Latest confirmed Ethereum block"} />
+                }
+                {!gasPriceError ?
+                <InfoCard title="GAS PRICE" value={gasPrice} unit={'Gwei'} description={"Ethereum transaction fee"} /> :
+                    <InfoCard title="GAS PRICE" value={"-"} unit={'Gwei'} description={"Ethereum transaction fee"} />
+                }
+                {!etherPriceError ?
+                <InfoCard title="ETHER PRICE" value={etherPrice.ethbtc} unit={'BTC'} description={"Ethereum/Bitcoin trading pair"} /> :
+                    <InfoCard title="ETHER PRICE" value={"-"} unit={'BTC'} description={"Ethereum/Bitcoin trading pair"} />
+                }
+                {!etherPriceError ?
+                <InfoCard title="ETHER PRICE" value={etherPrice.ethusd} unit={'$'} description={"Ethereum/USD trading pair"} /> :
+                    <InfoCard title="ETHER PRICE" value={"-"} unit={'$'} description={"Ethereum/USD trading pair"} />
+                }
             </SimpleGrid>
             <Divider />
         </>
