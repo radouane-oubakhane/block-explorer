@@ -1,10 +1,22 @@
 import {Divider, SimpleGrid} from "@chakra-ui/react";
 import InfoCard from "./InfoCard.jsx";
 import useBlockchain from "../hooks/useBlockchain.js";
+import InformationBoxSkeleton from "./InformationBoxSkeleton.jsx";
 
 
 function InformationBox() {
-    const {blockNumber, gasPrice, etherPrice} = useBlockchain()
+    const {gasPrice,
+        gasPriceError,
+        isGasPriceLoading,
+        blockNumber,
+        blockNumberError,
+        isBlockNumberLoading,
+        etherPrice,
+        etherPriceError,
+        isEtherPriceLoading} = useBlockchain()
+
+    if (isBlockNumberLoading || isGasPriceLoading || isEtherPriceLoading)
+        return <InformationBoxSkeleton />
     return (
         <>
             <SimpleGrid

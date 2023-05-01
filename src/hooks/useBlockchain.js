@@ -23,7 +23,6 @@ const useBlockchain = () => {
 
     useEffect(() => {
         // ================= GAS PRICE =================
-        setIsBlockNumberLoading(true)
         setIsGasPriceLoading(true)
         provider.core.getGasPrice()
             .then(res => {
@@ -36,8 +35,12 @@ const useBlockchain = () => {
             })
         // ================= BLOCK NUMBER =================
 
+        setIsBlockNumberLoading(true)
         provider.core.getBlockNumber()
-            .then(res => setBlockNumber(res))
+            .then(res => {
+                setBlockNumber(res)
+                setIsBlockNumberLoading(false)
+            })
             .catch(err => {
                 setBlockNumberError(err)
                 setIsBlockNumberLoading(false)
