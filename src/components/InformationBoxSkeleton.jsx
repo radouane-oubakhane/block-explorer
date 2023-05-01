@@ -1,7 +1,7 @@
 import {Divider, SimpleGrid, Skeleton, Stack} from "@chakra-ui/react";
 
 
-function InformationBox() {
+function InformationBoxSkeleton() {
     return (
         <>
             <SimpleGrid
@@ -40,4 +40,4 @@ function InformationBox() {
     )
 }
 
-export default InformationBox
+export default InformationBoxSkeleton
