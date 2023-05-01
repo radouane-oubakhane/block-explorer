@@ -1,10 +1,10 @@
 import {Accordion, Box, Heading} from "@chakra-ui/react";
-import useBlock from "../hooks/useBlock.js";
+import useBlocks from "../hooks/useBlocks.js";
 import BlockInfo from "./BlockInfo.jsx";
 
 
 function BlocksList() {
-    const {blocksList} = useBlock()
+    const {blocksList} = useBlocks()
     return (
         <Box
             paddingX={{
@@ -19,7 +19,7 @@ function BlocksList() {
                 allowToggle
             >
                 {blocksList.map((block, index) =>
-                    block.number !== '0' ? <BlockInfo key={index} block={block} /> : null
+                    block.number != '0' ? <BlockInfo key={index} block={block} /> : null
                 )}
             </Accordion>
         </Box>

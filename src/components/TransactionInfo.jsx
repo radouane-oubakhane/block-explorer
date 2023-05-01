@@ -21,7 +21,7 @@ function TransactionInfo({transaction, index}) {
                             Hash
                         </Text>
                         <Text color="aqua">
-                            {transaction.hash}
+                            {transaction.hash.slice(0,30)}...
                         </Text>
                     </HStack>
                     <HStack>
