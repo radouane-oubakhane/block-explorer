@@ -3,11 +3,14 @@ import useBlockchain from "../hooks/useBlockchain.js";
 import {FaGasPump} from "react-icons/fa";
 
 function GasTracker() {
-    const {gasPrice} = useBlockchain()
+    const {gasPrice, isGasPriceLoading} = useBlockchain()
     return (
         <HStack>
             <Icon as={FaGasPump} />
-            <Text>Gas: {gasPrice && gasPrice} Gwei</Text>
+            {isGasPriceLoading ?
+                <Text>Loading...</Text> :
+                <Text>Gas: {gasPrice && gasPrice} Gwei</Text>
+            }
         </HStack>
     )
 }

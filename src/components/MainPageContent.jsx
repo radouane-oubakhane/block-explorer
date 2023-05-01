@@ -1,5 +1,6 @@
 import {Grid, GridItem} from "@chakra-ui/react";
 import InformationBox from "./InformationBox.jsx";
+import BlocksList from "./BlocksList.jsx";
 
 
 function MainPageContent() {
@@ -19,7 +20,7 @@ function MainPageContent() {
                 <InformationBox />
             </GridItem>
             <GridItem area="BlocksList">
-                BlocksList
+                <BlocksList />
             </GridItem>
             <GridItem area="TransactionsList">
                 TransactionsList
