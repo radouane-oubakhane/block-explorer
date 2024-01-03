@@ -1,7 +1,13 @@
 import axios from "axios"
 
-const url = 'https://api.etherscan.io/api?module=stats&action=ethprice&apikey=1GZ3QR44QZ6JKI6AKQJNTC3JNB19T7C1M6'
+
+const apiKey = import.meta.env.REACT_APP_ETHERSCAN_API_KEY;
+
+const url = 'https://api.etherscan.io/api?module=stats&action=ethprice&apikey=' + apiKey;
 
 export default axios.create({
     baseURL: url,
 })
+
+
+
